@@ -1,24 +1,34 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from "react-redux";
 import { removeUser } from "../utils/userSlice";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { baseURL } from "../utils/constants";
+// import { useEffect } from "react";
 
 const Navbar = () =>{
     const user= useSelector((store)=>store.user);
     const dispatch=useDispatch();
-    const navigate=useNavigate()
+    const navigate=useNavigate();
 
-    const handleLogout = () =>{
-        dispatch(removeUser());
-        navigate("/login");
-    }
-    
-    useEffect(()=>{
-        if(!user) {
-            navigate("/login");
+    const handleLogout = async () =>{
+        try{
+            const res= await axios.post(baseURL+"logout",{},{ withCredentials:true } );
+            console.log(res);
+            if(res.status==200) {
+                dispatch(removeUser());
+                navigate("/login");
+            }
         }
-    },[user]);
+        catch(e) {
+            console.log(e);
+        } 
+    }
+    // useEffect(()=>{
+    //     if(!user) {
+    //         navigate("/login");
+    //     }
+    // },[user]);
     
     return (
         <div className="navbar bg-base-300 shadow-sm">
@@ -44,7 +54,7 @@ const Navbar = () =>{
             </ul>
         </div>
         )}
-        <a className="btn btn-ghost text-xl">👥 DevTinder</a>
+        <Link to="/" className="btn btn-ghost text-xl">👥 DevTinder</Link>
         </div>
         {user && (
         <div className="navbar-center hidden lg:flex">
@@ -65,7 +75,8 @@ const Navbar = () =>{
         )}
         {user && (
         <div className="navbar-end">
-        <div className="flex gap-2 mr-4">    
+        <div className="flex gap-2 mr-4 items-center">    
+            {user.firstName + " " + user.lastName}
             <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 rounded-full">
@@ -78,10 +89,10 @@ const Navbar = () =>{
                     tabIndex="-1"
                     className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                     <li>
-                    <a className="justify-between">
+                    <Link to="/profile" className="justify-between">
                         Profile
                         <span className="badge">New</span>
-                    </a>
+                    </Link>
                     </li>
                     <li><a>Settings</a></li>
                     <li><a onClick={handleLogout}>Logout</a></li>

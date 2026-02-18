@@ -10,6 +10,7 @@ import {baseURL} from "../utils/constants";
 const Login=()=>{
     const [emailId, setEmailId]=useState("supriyagupta@gmail.com"); 
     const [password, setpassword]=useState("supriya@123"); 
+    const [error, seterror]=useState(""); 
     const dispatch = useDispatch();
     const navigate=useNavigate();
 
@@ -28,6 +29,7 @@ const Login=()=>{
         }
         catch(err) {
             console.log(err);
+             seterror(err.response.data);
         }     
     }
 
@@ -41,11 +43,11 @@ const Login=()=>{
             <div>
                 <fieldset className="fieldset">
                 <legend className="fieldset-legend">User ID</legend>
-                <input value={emailId} onChange={(e)=>setEmailId(e.target.value)} type="text" className="input w-full" placeholder="Username/Email" />
+                <input value={emailId} onChange={(e)=> {seterror(""); setEmailId(e.target.value); } } type="text" className="input w-full" placeholder="Username/Email" />
                 
                 <legend className="fieldset-legend">Password</legend>
-                <input value={password} onChange={(e)=>setpassword(e.target.value)} type="password" className="input w-full" placeholder="Password" />
-
+                <input value={password} onChange={(e)=>{seterror(""); setpassword(e.target.value);}} type="password" className="input w-full" placeholder="Password" />
+                <p className="text-red-500">{error}</p>
                  <button className="btn btn-primary mt-8" onClick={handleSignin}>Login</button>
 
                 </fieldset>
