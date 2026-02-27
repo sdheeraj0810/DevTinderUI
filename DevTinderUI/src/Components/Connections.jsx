@@ -9,6 +9,8 @@ const Connections=()=>{
             const resData=await axios(baseURL+"user/connections",{withCredentials:true});            
             if(resData?.status==200){
                 setmyconnections(resData.data.data);
+            console.log(resData.data.data);
+
             }
         }
         catch(err){
