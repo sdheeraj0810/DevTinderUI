@@ -87,7 +87,7 @@ const EditProfile=()=>{
                     className="input w-full" placeholder="Last name" />
 
                     <legend className="fieldset-legend">Skills</legend>
-                    <input value={skills} onChange={(e)=>{seterror(""); setskills(e.target.value);}} 
+                    <input value={skills} onChange={(e)=>{seterror(""); setskills(e.target.value?.split(","));}} 
                     className="input w-full" placeholder="Comma separated" />
 
                     <legend className="fieldset-legend">Photo Url</legend>

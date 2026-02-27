@@ -42,15 +42,18 @@ const Navbar = () =>{
             <ul
             tabIndex="-1"
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-            <li><a>Item 1</a></li>
+            <li><Link to="/" >Home</Link></li>
             <li>
-                <a>Parent</a>
+                <a>Community</a>
                 <ul className="p-2">
-                <li><a>Submenu 1</a></li>
-                <li><a>Submenu 2</a></li>
+                 <li><Link to="/connections" className="justify-between">
+                        My connections                        
+                </Link></li>
+                <li><Link to="/requests" className="justify-between">
+                        My requests                        
+                </Link></li>
                 </ul>
-            </li>
-            <li><a>Item 3</a></li>
+            </li>           
             </ul>
         </div>
         )}
@@ -59,17 +62,20 @@ const Navbar = () =>{
         {user && (
         <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-            <li><a>Item 1</a></li>
+            <li><Link to="/" >Home</Link></li>
             <li>
             <details>
-                <summary>Parent</summary>
+                <summary>Community</summary>
                 <ul className="p-2 bg-base-100 w-40 z-1">
-                <li><a>Submenu 1</a></li>
-                <li><a>Submenu 2</a></li>
+                <li><Link to="/connections" className="justify-between">
+                        My connections                        
+                </Link></li>
+                <li><Link to="/requests" className="justify-between">
+                        My requests                        
+                </Link></li>
                 </ul>
             </details>
-            </li>
-            <li><a>Item 3</a></li>
+            </li>            
         </ul>
         </div>
         )}
@@ -94,7 +100,7 @@ const Navbar = () =>{
                         {/* <span className="badge">New</span> */}
                     </Link>
                     </li>
-                    <li><a>Settings</a></li>
+                    {/* <li><a>Settings</a></li> */}
                     <li><a onClick={handleLogout}>Logout</a></li>
                 </ul>
             </div>
