@@ -27,7 +27,7 @@ const Requests=()=>{
                 setTimeout(() => {
                     setshowtoastmessage("");
                 }, 3000);
-                fetchRequests();
+                fetchRequests(); //ideally the request should be saved in store and each request can be removed once updated from store
             }
 
         }

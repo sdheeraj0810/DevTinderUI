@@ -24,6 +24,7 @@ const Connections=()=>{
         <div className="flex flex-col items-center justify-center my-4">
            <h1 className="text-2xl mb-4">Connections</h1>
            <div className="flex flex-col justify-start min-w-sm">
+            {myconnections.length==0 && (<p>No active connections.</p>)}
             {myconnections?.map(item => (
                 <div key={item._id} className="bg-base-300 card card-side shadow-sm mb-2 flex flex-row px-4">
                 
