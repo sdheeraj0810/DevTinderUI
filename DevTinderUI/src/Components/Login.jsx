@@ -55,10 +55,11 @@ const Login=()=>{
             setsignuppassword("");
             setfirstname("");
             setlastname("");
-            setshowtoastmessage(res?.data?.message);
+            setshowtoastmessage(res?.data?.message + ". You can login now.");
             setTimeout(() => {
                 setshowtoastmessage("");
             }, 3000);
+            setissignup(false);
         }
         catch(err){
             console.log(err);
@@ -86,11 +87,11 @@ const Login=()=>{
                 <legend className="fieldset-legend">Email ID</legend>
                 <input value={signupemailId} onChange={(e)=> {seterror(""); setsignupemailId(e.target.value); } } type="text" className="input w-full" placeholder="Username/Email" />                
                 <legend className="fieldset-legend">First name</legend>
-                <input value={signuppassword} onChange={(e)=> {seterror(""); setsignuppassword(e.target.value); } } type="text" className="input w-full" placeholder="Username/Email" />                
+                <input value={firstname} onChange={(e)=> {seterror(""); setfirstname(e.target.value); } } type="text" className="input w-full" placeholder="First name" />                
                 <legend className="fieldset-legend">Last name</legend>
-                <input value={firstname} onChange={(e)=> {seterror(""); setfirstname(e.target.value); } } type="text" className="input w-full" placeholder="Username/Email" />                
+                <input value={lastname} onChange={(e)=> {seterror(""); setlastname(e.target.value); } } type="text" className="input w-full" placeholder="Last name" />                
                 <legend className="fieldset-legend">Password</legend>
-                <input value={lastname} onChange={(e)=>{seterror(""); setlastname(e.target.value);}} type="password" className="input w-full" placeholder="Password" />
+                <input value={signuppassword} onChange={(e)=>{seterror(""); setsignuppassword(e.target.value);}} type="password" className="input w-full" placeholder="Password" />
                 <p className="text-red-500">{error}</p>
                  <button className="btn btn-primary mt-8" onClick={handleSignup}>Sign up</button>                 
                  <div className="flex justify-end"><a className="text-blue-400 underline cursor-pointer" onClick={()=>setissignup(false)}>Login</a></div>
