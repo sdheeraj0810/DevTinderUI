@@ -1,6 +1,8 @@
 import axios from "axios";
 import { baseURL } from "../utils/constants";
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
+import Chat from "./Chat";
 
 const Connections=()=>{
     const [myconnections,setmyconnections]=useState([]);
@@ -33,18 +35,17 @@ const Connections=()=>{
                     <img src={item.photoUrl} />
                 </div>
                 </div>
-                
-               
-                <div className="card-body p-4">
+                <div className="card-body p-4 pr-0">
                     <div className="flex flex-row gap-2 items-center">
                     <h2 className="card-title">{item.firstName + " " + item.lastName} </h2>
                     <p>{item.age}</p>
                     </div>
                     <p>{item.about}</p>
                     <p>Skills: {item.skills?.join(", ")}</p>
-                    {/* <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Watch</button>
-                    </div> */}
+                    <div className="card-actions justify-end">
+                        <Link to={"/chat/"+item._id}> <button className="btn btn-secondary">Chat</button></Link>
+                   
+                    </div>
                 </div>
                 </div>                
             ))}

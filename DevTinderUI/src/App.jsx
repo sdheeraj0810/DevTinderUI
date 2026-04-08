@@ -8,6 +8,7 @@ import appStore from "./utils/appstore";
 import EditProfile from "./Components/EditProfile";
 import Connections from "./Components/Connections";
 import Requests from "./Components/Requests";
+import Chat from "./Components/Chat";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/profile" element={<Profile></Profile>} />
           <Route path="/connections" element={<Connections></Connections>} />
           <Route path="/requests" element={<Requests></Requests>} />
+          <Route path="/chat/:id" element={<Chat></Chat>} />
         </Route>
         <Route path="/login" element={<Login />}></Route>
       </Routes>
